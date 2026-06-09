@@ -30,6 +30,7 @@ go get github.com/Try-si/EasyGame
     Json/*
         Overworld.json // c'est un exemple
         nos maps json (format json)
+    Tiles.json
     Elements.json
     Maps.json
  IAs/
@@ -37,6 +38,8 @@ go get github.com/Try-si/EasyGame
     Dog.go
     Skeleton.go
     Guard.go
+ Animations/
+    Exemple.json
  config.json // obligatoire
  main.go
  go.mod
@@ -81,8 +84,11 @@ Pour Maps.json :
 {
     "Maps": ["Overworld"],
     "JsonMap": "Json",
-    "ImgMap": "Maps",
-    "Elements": "Elements.json"
+    "TiledMap": "Maps",
+    "Elements": "Elements.json",
+    "Tiles": "Tiles.json",
+    "Parrallax": true,
+    "ParrallaxFactor": 1.0
 }
 ```
 
@@ -98,6 +104,25 @@ Pour Elements.json :
             "Layer": 5,
             "Box": [0, 0, 0, 0] // width, height (si il est == a 0 alors c'est un cercle et width = rayon), box pos x, box pos y
         }
+    }
+}
+```
+
+Pour Tiles.json :
+
+```json
+{
+    "0":{// is a tile id in map of tiled of grass
+        "Animation": "nil",// cela peut etre nil
+        "Collision": false,
+        "Box": [32,32,0,0],
+        "Tags": ["Grass"]
+    },
+    "1":{// is a tile id in map of tiled of water
+        "Animation": "Water_idle",
+        "Collision": true,
+        "Box": [32,32,0,0],
+        "Tags": ["Water"]
     }
 }
 ```
@@ -159,3 +184,16 @@ func InitDog() {
 }
 ```
 
+Pour Animations/Exemple.json :
+```json 
+{
+    "Player_idle": {
+        "Frames": [
+            {"Frame": "Player_idle_1.png", "Duration": "rand", "Box": [32, 32, 0, 0]},
+            {"Frame": "Player_idle_2.png", "Duration": "rand", "Box": [32, 32, 0, 0]},
+            {"Frame": "Player_idle_3.png", "Duration": "rand", "Box": [32, 32, 0, 0]}
+        ],
+        "Speed": 1
+    }
+}
+```
