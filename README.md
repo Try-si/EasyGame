@@ -73,7 +73,7 @@ Pour config.json :
 
     "SpritePath": "Textures",
     "SoundPath": "Sounds",
-    "MapsPath": "Maps",
+    "MapsPath": "Maps/Maps.json",
     "IAsPath": "IAs/IAs.go"
 }
 ```
