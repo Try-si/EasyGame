@@ -35,7 +35,13 @@ func IsKeyJustPressed(binding string) bool {
 }
 
 func Update() {
-	for key := range inputManager.previousKeys {
+	if inputManager == nil {
+		return
+	}
+	if inputManager.previousKeys == nil {
+		inputManager.previousKeys = make(map[int]bool)
+	}
+	for key, _ := range inputManager.previousKeys {
 		inputManager.previousKeys[key] = ebiten.IsKeyPressed(ebiten.Key(key))
 	}
 	for _, key := range inputManager.im.Bindings {

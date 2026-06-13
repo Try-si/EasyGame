@@ -40,6 +40,7 @@ go get github.com/Try-si/EasyGame
     Guard.go
  Animations/
     Exemple.json
+    Animations.json
  config.json // obligatoire
  main.go
  go.mod
@@ -72,6 +73,7 @@ Pour config.json :
     "Map": "Overworld",         // nom de la map à charger au démarrage
 
     "SpritePath": "Textures",
+    "AnimationPath": "Animations/Animations.json",
     "SoundPath": "Sounds",
     "MapsPath": "Maps/Maps.json",
     "IAsPath": "IAs/IAs.go"
@@ -114,17 +116,21 @@ Pour Tiles.json :
 {
     "0":{// is a tile id in map of tiled of grass
         "Animation": "nil",// cela peut etre nil
-        "Collision": false,
         "Box": [32,32,0,0],
         "Tags": ["Grass"]
     },
     "1":{// is a tile id in map of tiled of water
         "Animation": "Water_idle",
-        "Collision": true,
         "Box": [32,32,0,0],
         "Tags": ["Water"]
     }
 }
+```
+
+Pour Animations.json :
+
+```json
+["Exemple"]
 ```
 
 Pour Overworld.json :
@@ -184,7 +190,7 @@ func InitDog() {
 }
 ```
 
-Pour Animations/Exemple.json :
+Pour Exemple.json :
 ```json 
 {
     "Player_idle": {
