@@ -4,7 +4,7 @@ go 1.26.0
 
 require (
 	github.com/Try-si/EIM v1.0.4
-	github.com/Try-si/ETE v0.2.0
+	github.com/Try-si/ETE v0.4.0
 	github.com/Try-si/IAM v0.2.0
 	github.com/hajimehoshi/ebiten/v2 v2.9.9
 )
