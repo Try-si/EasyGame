@@ -33,23 +33,35 @@ func Update(deltaTime float32) error {
 }
 
 func MoveElement(elementID string, position [2]float32) {
-	// TODO: Implement element movement
+	element := ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID]
+	element.Pos = position
+	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID] = element
 }
 
 func RotateElement(elementID string, angle float32) {
-	// TODO: Implement element rotation
+	element := ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID]
+	element.Rotation = angle
+	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID] = element
 }
 
-func ScaleElement(elementID string, scale [2]float32) {
-	// TODO: Implement element scaling
+func ScaleElement(elementID string, scale [2]int) {
+	element := ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID]
+	element.Size = scale
+	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID] = element
 }
 
-func AddEntity(Animation string, Size [2]int, Box [4]float32, Tags []string, Name string, Pos [2]float32, Rotation float32, Layer int, MetaData map[string]string) {
-
+func AddEntity(id string, name string, pos [2]float32, rotation float32, layer int, metaData map[string]string) {
+	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[id] = &ETECore.Element{
+		Name:     name,
+		Pos:      pos,
+		Rotation: rotation,
+		Layer:    layer,
+		MetaData: metaData,
+	}
 }
 
 func RemoveEntity(entityID string) {
-
+	delete(ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements, entityID)
 }
 
 func SaveGame(path string) {

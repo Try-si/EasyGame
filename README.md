@@ -102,8 +102,6 @@ Pour Elements.json :
         "Player": {
             "Image": "Player.png",
             "Size": [32, 32],
-            "Rotation": 0,
-            "Layer": 5,
             "Box": [0, 0, 0, 0] // width, height (si il est == a 0 alors c'est un cercle et width = rayon), box pos x, box pos y
         }
     }
@@ -149,6 +147,8 @@ Pour Overworld.json :
         {
             "Name": "Player",  // nom de l'élément dans Elements.json
             "Pos": [0.0, 0.0], // position de l'élément
+            "Rotation": 0,
+            "Layer": 5,
             "MetaData": {
                 "Nom de la variable": "valeur de la variable"
             }
