@@ -11,12 +11,13 @@ import (
 var updateFunc func(float32) error
 var config Config
 
-func NewGame(update func(float32) error) {
+func NewGame(update func(float32) error, debug bool) {
 	config = ETEhelper.JsonToStruct[Config]("config.json")
 	updateFunc = update
 
 	ETEngine.Init(Update, "config.json") // Initialize the engine
-	ETEngine.GameLoop()                  // Start the game loop
+	ETEngine.Game.Debug = debug
+	ETEngine.GameLoop() // Start the game loop
 }
 
 func Update(deltaTime float32) error {
@@ -32,32 +33,32 @@ func Update(deltaTime float32) error {
 	return nil
 }
 
-func MoveElement(elementID string, position [2]float32) {
-	element := ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID]
-	element.Pos = position
-	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID] = element
+func MoveElement(elementID string, position [3]float32) {
+	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID].Pos[0] -= position[0]
+	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID].Pos[1] += position[1]
+	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID].Z = int(position[2])
 }
 
 func RotateElement(elementID string, angle float32) {
-	element := ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID]
-	element.Rotation = angle
-	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID] = element
+	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID].Rotation = angle
 }
 
 func ScaleElement(elementID string, scale [2]int) {
-	element := ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID]
-	element.Size = scale
-	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID] = element
+	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[elementID].Size = scale
 }
 
-func AddEntity(id string, name string, pos [2]float32, rotation float32, layer int, metaData map[string]string) {
+func AddEntity(id string, name string, pos [2]float32, rotation float32, Z int, metaData map[string]string) {
 	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[id] = &ETECore.Element{
 		Name:     name,
 		Pos:      pos,
 		Rotation: rotation,
-		Layer:    layer,
+		Z:        Z,
 		MetaData: metaData,
 	}
+}
+
+func SetAnimation(entityID string, animation string) {
+	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Elements[entityID].Animation = animation
 }
 
 func RemoveEntity(entityID string) {
@@ -70,4 +71,14 @@ func SaveGame(path string) {
 
 func LoadGame(path string) {
 	ETEngine.Game = ETEhelper.JsonToStruct[*ETECore.Game](path)
+}
+
+func MoveCamera(position [3]float32) {
+	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Cam.Offset[0] += position[0]
+	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Cam.Offset[1] -= position[1]
+	ETEngine.Game.Maps[ETEngine.Game.Config.Map].Cam.Z += position[2]
+}
+
+func Quit() {
+	ETEngine.Game.Quite = true
 }

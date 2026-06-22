@@ -71,6 +71,7 @@ Pour config.json :
     "ScreenHeight": 600,
     "Title": "My Game",
     "Map": "Overworld",         // nom de la map à charger au démarrage
+    "AdaptativeSize": false,     // si les element doive retrécire quand la taille de la fenêtre est augmenté
 
     "SpritePath": "Textures",
     "AnimationPath": "Animations/Animations.json",
@@ -139,21 +140,22 @@ Pour Overworld.json :
     "CellSize": 1,              // taille de la cellule
     "Unité": 32,                // taille d'une unité en pixels
     "Cam": {
-        "Zoom": 1.0,
+        "Z": 1.0,
         "Offset": [0.0, 0.0]
     },
 
-    "Elements": [
-        {
+    "Elements": {
+        "Player": {
             "Name": "Player",  // nom de l'élément dans Elements.json
             "Pos": [0.0, 0.0], // position de l'élément
             "Rotation": 0,
-            "Layer": 5,
+            "Z": 1,
+            "Visible": true,
             "MetaData": {
                 "Nom de la variable": "valeur de la variable"
             }
         }
-    ]       // éléments dans la map
+    }   // éléments dans la map
 }
 ```
 
