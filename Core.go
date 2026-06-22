@@ -4,6 +4,7 @@ import (
 	ETEngine "github.com/Try-si/ETE"
 	"github.com/Try-si/ETE/ETECore"
 	ETEhelper "github.com/Try-si/ETE/ETEHelper"
+	"github.com/Try-si/EasyGame/IA"
 	IAs "github.com/Try-si/EasyGame/IA"
 	"github.com/Try-si/EasyGame/Inputs"
 )
@@ -11,9 +12,11 @@ import (
 var updateFunc func(float32) error
 var config Config
 
-func NewGame(update func(float32) error, debug bool) {
+func NewGame(update func(float32) error, IAInit func(), debug bool) {
 	config = ETEhelper.JsonToStruct[Config]("config.json")
 	updateFunc = update
+
+	IA.Init(IAInit)
 
 	ETEngine.Init(Update, "config.json") // Initialize the engine
 	ETEngine.Game.Debug = debug

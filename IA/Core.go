@@ -5,10 +5,11 @@ import (
 	IAMobs "github.com/Try-si/IAM"
 )
 
-func Init() {
+func Init(addings func()) {
 	IAMobs.InitFSM()
 	IAMobs.InitBrain()
 	IAMobs.InitBeavioursTree()
+	addings()
 }
 
 func Update(deltaTime float32) error {

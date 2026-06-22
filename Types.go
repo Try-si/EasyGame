@@ -6,10 +6,8 @@ type Config struct {
 	Title        string // titre de la fenêtre
 	Map          string // nom de la map à charger au démarrage
 
-	SpritePath   string // chemin vers les sprites
-	SoundPath    string // chemin vers les sons
-	MapsPath     string // chemin vers les maps
-	IAsPath      string // chemin vers les IA
-	IActionsPath string // chemin vers les actions des IA
-	IATypesPath  string // chemin vers les types des IA
+	SpritePath string // chemin vers les sprites
+	SoundPath  string // chemin vers les sons
+	MapsPath   string // chemin vers les maps
+	IAsPath    string // chemin vers les IA
 }
