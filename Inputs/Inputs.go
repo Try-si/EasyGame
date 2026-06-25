@@ -13,6 +13,7 @@ type InputManager struct {
 }
 
 func Init(configPath string) {
+	inputManager = &InputManager{}
 	inputManager.im = EIM.NewInputManager(configPath)
 	inputManager.previousKeys = make(map[int]bool)
 	for _, key := range inputManager.im.Bindings {
@@ -24,7 +25,7 @@ func BindingIsPressed(key string) bool {
 	return inputManager.im.IsKeyPressed(key)
 }
 
-func IsKeyJustPressed(binding string) bool {
+func IsBindingJustPressed(binding string) bool {
 	key, ok := inputManager.im.Bindings[binding]
 	if !ok {
 		return false
@@ -32,6 +33,16 @@ func IsKeyJustPressed(binding string) bool {
 	currentPressed := BindingIsPressed(binding)
 	wasPressed := inputManager.previousKeys[key]
 	return currentPressed && !wasPressed
+}
+
+func IsBindingJustReleased(binding string) bool {
+	key, ok := inputManager.im.Bindings[binding]
+	if !ok {
+		return false
+	}
+	currentPressed := BindingIsPressed(binding)
+	wasPressed := inputManager.previousKeys[key]
+	return !currentPressed && wasPressed
 }
 
 func Update() {
@@ -55,7 +66,7 @@ func BindingExists(key string) bool {
 	return inputManager.im.HasBinding(key)
 }
 
-func SetBindings(key string, value int) {
+func SetBinding(key string, value int) {
 	inputManager.im.SetBinding(key, value)
 }
 

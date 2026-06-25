@@ -3,19 +3,17 @@ module github.com/Try-si/EasyGame
 go 1.26.0
 
 require (
-	github.com/Try-si/EIM v1.0.4
-	github.com/Try-si/ETE v0.4.0
-	github.com/Try-si/IAM v0.2.0
+	github.com/Try-si/EIM v1.1.0
+	github.com/Try-si/ETE v1.0.0
+	github.com/Try-si/IAM v1.0.0
 	github.com/hajimehoshi/ebiten/v2 v2.9.9
 )
 
 require (
-	github.com/ebitengine/gomobile v0.0.0-20250923094054-ea854a63cce1 // indirect
+	github.com/ebitengine/gomobile v0.0.0-20260211053922-3d992dae95d1 // indirect
 	github.com/ebitengine/hideconsole v1.0.0 // indirect
-	github.com/ebitengine/purego v0.9.0 // indirect
-	github.com/jezek/xgb v1.1.1 // indirect
-	golang.org/x/sync v0.17.0 // indirect
-	golang.org/x/sys v0.36.0 // indirect
+	github.com/ebitengine/purego v0.10.1 // indirect
+	github.com/jezek/xgb v1.3.1 // indirect
+	golang.org/x/sync v0.21.0 // indirect
+	golang.org/x/sys v0.46.0 // indirect
 )
-
-replace github.com/Try-si/ETE => ../ETM

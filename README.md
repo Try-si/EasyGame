@@ -15,6 +15,8 @@ go get github.com/Try-si/EasyGame
 ``` files
 
 /Mon jeu
+ Inputs/
+    Inputs.json
  Textures/
     Dog.png // c'est un exemple
     Skeleton.png // c'est un exemple
@@ -77,7 +79,8 @@ Pour config.json :
     "AnimationPath": "Animations/Animations.json",
     "SoundPath": "Sounds",
     "MapsPath": "Maps/Maps.json",
-    "IAsPath": "IAs/IAs.go"
+    "IAsPath": "IAs/IAs.go",
+    "InputsPath": "Inputs/Inputs.json"
 }
 ```
 
